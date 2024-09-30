@@ -1,50 +1,56 @@
 import React, { useState } from 'react';
 import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import '../custom.css';
 
 function EnterAgeScreen() {
-  const [age, setAge] = useState<string | number>(''); // Initialize age as an empty string
-  const [errorMessage, setErrorMessage] = useState<string | null>(null); // For handling error messages
+  const [age, setAge] = useState<string | number>('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const navigate = useNavigate();
 
   const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAge(e.target.value); // Update age on input change
+    setAge(e.target.value);
   };
 
   const handleSubmit = () => {
     const numericAge = Number(age);
     if (numericAge >= 18) {
-      setErrorMessage(null); // Clear any previous error messages
-      navigate('/main'); // Navigate to MainScreen
+      setErrorMessage(null);
+      navigate('/main');
     } else {
       setErrorMessage('You must be at least 18 years old.');
     }
   };
 
   return (
-    <Container fluid className="d-flex align-items-center justify-content-center vh-100 bg-light">
+    <Container fluid className="d-flex align-items-center justify-content-center vh-100 bg-custom">
       <Row className="w-100 justify-content-center">
-        <Col xs={12} sm={8} md={6} lg={4} className="p-4 bg-white shadow rounded">
-          <h2 className="text-center mb-4">Enter Your Age</h2>
+        <Col xs={12} sm={8} md={6} lg={4} className="screen-container">
+          <h2 className="screen-header text-primary-custom">Enter Your Age</h2>
 
-          {/* Error message alert */}
           {errorMessage && (
-            <Alert variant="danger" onClose={() => setErrorMessage(null)} dismissible>
+            <Alert variant="danger" className="alert-custom">
               {errorMessage}
             </Alert>
           )}
 
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Age</Form.Label>
               <Form.Control
                 type="number"
                 placeholder="Enter your age"
                 value={age}
                 onChange={handleAgeChange}
+                className="form-control-custom p-3"
               />
             </Form.Group>
-            <Button onClick={handleSubmit} variant="primary" className="w-100 mb-3">
+
+            <Button
+              onClick={handleSubmit}
+              variant="primary-custom"
+              className="w-100 btn-custom-spacing"
+            >
               Submit
             </Button>
           </Form>
