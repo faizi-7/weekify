@@ -1,33 +1,25 @@
-import React, { useState, useTransition } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 
-const MainScreen: React.FC = () => {
-  const [isPending, startTransition] = useTransition();
-  const [data, setData] = useState<string | null>(null);
-
-  const handleClick = () => {
-    startTransition(() => {
-      setTimeout(() => {
-        setData('Welcome to the Main Screen!');
-      }, 2000);
-    });
-  };
-
+function MainScreen() {
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col xs={12} md={6}>
-          <h1 className="text-center">Main Screen</h1>
-          <div className="text-center">
-            <Button variant="primary" onClick={handleClick}>
-              {isPending ? 'Loading...' : 'Fetch Data'}
-            </Button>
-            {data && <p className="mt-3">{data}</p>}
-          </div>
+    <Container fluid className="d-flex align-items-center justify-content-center vh-100 bg-light">
+      <Row className="w-100 justify-content-center">
+        <Col xs={12} sm={8} md={6} lg={4} className="p-4 bg-white shadow rounded">
+          <h2 className="text-center mb-4">Welcome to the Main Screen</h2>
+          
+          <p className="text-center mb-4">This is the main screen. You have successfully logged in!</p>
+          
+          <Button variant="primary" className="w-100 mb-3">
+            Proceed
+          </Button>
+
+          <Button variant="secondary" className="w-100">
+            Log Out
+          </Button>
         </Col>
       </Row>
     </Container>
   );
-};
+}
 
 export default MainScreen;
