@@ -74,7 +74,7 @@ function LoginScreen() {
             <FontAwesomeIcon icon={faGoogle} className="me-2" /> Login with Google
             </Button>
 
-            <Button variant="primary-custom" className="w-100 mb-2" onClick={handleLogin}>
+            <Button className="w-100 mb-2 btn-dark border" onClick={handleLogin}>
               Signup
             </Button>
           </Form>
