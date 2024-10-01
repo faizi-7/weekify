@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../custom.css';
+import logo from './../assets/weekify.png'
 
 function LoginScreen() {
   const [username, setUsername] = useState<string>('');
@@ -31,6 +32,9 @@ function LoginScreen() {
     <Container fluid className="d-flex align-items-center justify-content-center vh-100 bg-custom">
       <Row className="w-100 justify-content-center">
         <Col xs={12} sm={8} md={6} lg={4} className="p-4 shadow rounded bg-white">
+        <div className="logo-container">
+            <img src={logo} alt="Logo" className="logo-img" />
+          </div>
           <h2 className="text-center mb-4 text-primary-custom">Login</h2>
 
           {errorMessage && (
@@ -60,16 +64,21 @@ function LoginScreen() {
               />
             </Form.Group>
 
-            <Button variant="primary-custom" className="w-100 mb-3" onClick={handleLogin}>
+            <Button variant="primary-custom" className="w-100 mb-2" onClick={handleLogin}>
               Login
+            </Button>
+
+            <Button className="w-100 mb-2 bg-danger text-white border">
+              <i className="fab fa-google me-2"></i> Login with Google
+            </Button>
+
+            <Button variant="primary-custom" className="w-100 mb-2" onClick={handleLogin}>
+              Signup
             </Button>
           </Form>
 
           <div className="text-center">
             <a href="#" className="d-block mb-3">Forgot Password?</a>
-            <Button variant="outline-dark" className="w-100">
-              <i className="fab fa-google me-2"></i> Login with Google
-            </Button>
           </div>
         </Col>
       </Row>

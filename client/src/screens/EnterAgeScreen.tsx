@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../custom.css';
+import logo from './../assets/weekify.png'
 
 function EnterAgeScreen() {
   const [age, setAge] = useState<string | number>('');
@@ -27,6 +28,10 @@ function EnterAgeScreen() {
     <Container fluid className="d-flex align-items-center justify-content-center vh-100 bg-custom">
       <Row className="w-100 justify-content-center">
         <Col xs={12} sm={8} md={6} lg={4} className="screen-container">
+
+        <div className="logo-container">
+            <img src={logo} alt="Logo" className="logo-img" />
+          </div>
           <h2 className="screen-header text-primary-custom">Enter Your Age</h2>
 
           {errorMessage && (
