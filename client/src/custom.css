@@ -1,17 +1,17 @@
 
 .text-primary-custom {
-  color: #FF5722;
+  color: #2fbf71;
 }
 
 .btn-primary-custom {
-  background-color: #FF5722 !important;
-  border-color: #FF5722 !important;
+  background-color: #2fbf71 !important;
+  border-color: #2fbf71 !important;
   color: #ffffff !important;
 }
 
 .btn-primary-custom:hover {
-  background-color: #E64A19;
-  border-color: #E64A19;
+  background-color: #8cd867;
+  border-color: #8cd867;
 }
 
 .bg-custom {
@@ -25,8 +25,19 @@
 }
 
 .form-control-custom:focus {
-  border-color: #FF5722;
+  border-color: #2fbf71;
   box-shadow: 0 0 5px rgba(255, 87, 34, 0.5);
+}
+
+/* Logo Styling */
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-img {
+  max-width: 100px;
+  height: auto;
 }
 
 .screen-container {
@@ -38,7 +49,7 @@
 
 .screen-header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .alert-custom {
