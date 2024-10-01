@@ -3,6 +3,8 @@ import { Button, Form, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../custom.css';
 import logo from './../assets/weekify.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons'; 
 
 function LoginScreen() {
   const [username, setUsername] = useState<string>('');
@@ -69,7 +71,7 @@ function LoginScreen() {
             </Button>
 
             <Button className="w-100 mb-2 bg-danger text-white border">
-              <i className="fab fa-google me-2"></i> Login with Google
+            <FontAwesomeIcon icon={faGoogle} className="me-2" /> Login with Google
             </Button>
 
             <Button variant="primary-custom" className="w-100 mb-2" onClick={handleLogin}>
