@@ -77,7 +77,7 @@ function LoginScreen() {
             </Button>
           </Form>
 
-          <div className="text-center">
+          <div className="text-center my-3">
             <a href="#" className="d-block mb-3">Forgot Password?</a>
           </div>
         </Col>
