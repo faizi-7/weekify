@@ -1,17 +1,38 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-import WeekBox from '../../components/WeekBox/WeekBox';
-import './WeekGrid.css'
+import WeekBox from '../WeekBox/WeekBox';
+
+const getCurrentWeekNumber = () => {
+  const now = new Date();
+  const startOfYear = new Date(now.getFullYear(), 0, 1);
+  const pastDaysOfYear = (now.getTime() - startOfYear.getTime()) / 86400000;
+  return Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+};
 
 const WeekGrid: React.FC = () => {
-  const weeks = useSelector((state: RootState) => state.weeks.weeks);
+  const totalWeeks = 52; // Or 51 depending on the year
+  const currentWeekNumber = getCurrentWeekNumber();
+
+  const weeks = Array.from({ length: totalWeeks }, (_, index) => {
+    const weekNumber = index + 1;
+    const isPassed = weekNumber <= currentWeekNumber;
+
+    return (
+      <WeekBox 
+        key={weekNumber} 
+        weekNumber={weekNumber} 
+        isPassed={isPassed} 
+      />
+    );
+  });
 
   return (
-    <div className="week-grid">
-      {weeks.map((week) => (
-        <WeekBox key={week.weekNumber} weekNumber={week.weekNumber} status={week.status} />
-      ))}
+    <div className="week-grid-container">
+      <h2 className="week-grid-title">Weeks of {new Date().getFullYear()}</h2>
+      <div className="week-grid">
+        {weeks}
+      </div>
     </div>
   );
 };
