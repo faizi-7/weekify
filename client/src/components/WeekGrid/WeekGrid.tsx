@@ -1,5 +1,6 @@
 import React from 'react';
 import WeekBox from '../WeekBox/WeekBox';
+import WeekTitleBar from '../WeekTitleBar/WeekTitleBar';
 
 const getCurrentWeekNumber = () => {
   const now = new Date();
@@ -30,12 +31,14 @@ const WeekGrid: React.FC = () => {
   });
 
   return (
-    <div className="week-grid-container">
-      {/* <h2 className="week-grid-title">Weeks of {new Date().getFullYear()}</h2> */}
-      <div className="week-grid">
-        {weeks}
+    <>
+      <WeekTitleBar />
+      <div className="week-grid-container">
+        <div className="week-grid">
+          {weeks}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
