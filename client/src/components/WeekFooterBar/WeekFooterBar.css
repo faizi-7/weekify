@@ -1,0 +1,30 @@
+.week-footer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.next-target-week,
+.yearly-view,
+.life-view {
+    background-color: var(--ultra-light);
+    color: var(--blue);
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.yearly-view {
+    color: #fff;
+    background-color: var(--blue);
+}
+
+.life-view {
+    color: var(--blue);
+    background-color: var(--ultra-light);
+}
+
+.week-footer-right-side {
+    display: flex;
+    gap: 6px;
+}

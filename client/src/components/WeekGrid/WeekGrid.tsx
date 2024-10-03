@@ -1,6 +1,7 @@
 import React from 'react';
 import WeekBox from '../WeekBox/WeekBox';
 import WeekTitleBar from '../WeekTitleBar/WeekTitleBar';
+import WeekFooterBar from '../WeekFooterBar/WeekFooterBar';
 
 const getCurrentWeekNumber = () => {
   const now = new Date();
@@ -38,6 +39,7 @@ const WeekGrid: React.FC = () => {
           {weeks}
         </div>
       </div>
+      <WeekFooterBar />
     </>
   );
 };
