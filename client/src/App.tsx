@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginScreen from './screens/LoginScreen';
 import EnterAgeScreen from './screens/EnterAgeScreen';
 import MainScreen from './screens/MainScreen/MainScreen';
-import store from './redux/store';
+import store from './redux/store/store';
 import { Provider } from 'react-redux';
 
 const App: React.FC = () => {

@@ -1,6 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 import WeekBox from '../WeekBox/WeekBox';
 
 const getCurrentWeekNumber = () => {
@@ -11,18 +9,23 @@ const getCurrentWeekNumber = () => {
 };
 
 const WeekGrid: React.FC = () => {
+  console.log(typeof getCurrentWeekNumber())
   const totalWeeks = 52; // Or 51 depending on the year
   const currentWeekNumber = getCurrentWeekNumber();
 
-  const weeks = Array.from({ length: totalWeeks }, (_, index) => {
+   // Create an array of week numbers
+   const weeks = Array.from({ length: totalWeeks }, (_, index) => {
     const weekNumber = index + 1;
-    const isPassed = weekNumber <= currentWeekNumber;
+    const isPassed = weekNumber < currentWeekNumber;
+    const isCurrentWeek = weekNumber === currentWeekNumber;
+
 
     return (
       <WeekBox 
-        key={weekNumber} 
-        weekNumber={weekNumber} 
-        isPassed={isPassed} 
+        key={weekNumber}
+        weekNumber={weekNumber}
+        isPassed={isPassed}
+        isCurrentWeek={isCurrentWeek}
       />
     );
   });

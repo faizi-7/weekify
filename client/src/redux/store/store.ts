@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import weeksReducer from './slices/weekSlice';
+import weeksReducer from '../slices/weekSlice';
 
 const store = configureStore({
   reducer: {

@@ -13,7 +13,13 @@
 }
 
 .week-box.green {
-  background-color: green;
+  background-color: #2fbf71;
+}
+
+.week-box.current-week {
+  background-color: #a0d7a0;
+  outline: 2px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .week-label {
