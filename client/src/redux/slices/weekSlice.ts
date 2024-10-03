@@ -6,6 +6,7 @@ interface Week {
 }
 
 interface WeeksState {
+  map(arg0: (week: any, index: any) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
   year: number;
   weeks: Week[];
 }

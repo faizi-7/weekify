@@ -3,27 +3,34 @@
   height: 50px;
   background-color: lightgray;
   margin: 5px;
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
   font-size: 12px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
 .week-box.green {
-  background-color: #4CAF50;
+  background-color: #2fbf71;
 }
 
-.week-box.blue {
-  background-color: #2196F3;
+.week-box.current-week {
+  background-color: #a0d7a0;
+  outline: 2px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.week-box.highlight {
-  border: 2px solid yellow;
+.week-label {
+  visibility: hidden;
+  vertical-align: middle;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease;
 }
 
-.week-box:hover {
-  cursor: pointer;
-  background-color: #ddd;
+.week-box:hover .week-label {
+  visibility: visible;
+  opacity: 1;
 }
+
