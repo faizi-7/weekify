@@ -1,15 +1,24 @@
-/* src/index.css */
+:root {
+  /* Colour Pallete */
+  --blue: rgb(0, 186, 234);
+  --green: rgb(47, 191, 113);
+  --light-green: rgb(140, 216, 103);
+  --heading-color: rgb(54, 53, 55);
+  --sub-heading-color: rgb(100, 98, 102);
+  --light-grey: rgb(194, 194, 194);
+}
+
 body {
     font-family: Arial, sans-serif;
   }
   
   h1 {
-    color: #333;
+    color: var(--heading-color);
   }
   
   button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: var(--blue);
     color: white;
     border: none;
     border-radius: 4px;

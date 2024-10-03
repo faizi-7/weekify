@@ -1,7 +1,7 @@
 .week-box {
   width: 50px;
   height: 50px;
-  background-color: lightgray;
+  background-color: var(--light-grey);
   margin: 5px;
   display: inline-flex;
   justify-content: center;
@@ -14,11 +14,11 @@
 }
 
 .week-box.green {
-  background-color: #2fbf71;
+  background-color: var(--green);
 }
 
 .week-box.current-week {
-  background-color: #a0d7a0;
+  background-color: var(--light-green);
   outline: 2px solid white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -34,4 +34,3 @@
   visibility: visible;
   opacity: 1;
 }
-
