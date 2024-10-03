@@ -12,15 +12,15 @@ const WeekGrid: React.FC = () => {
   const totalWeeks = 52; // Or 51 depending on the year
   const currentWeekNumber = getCurrentWeekNumber();
 
-   // Create an array of week numbers
-   const weeks = Array.from({ length: totalWeeks }, (_, index) => {
+  // Create an array of week numbers
+  const weeks = Array.from({ length: totalWeeks }, (_, index) => {
     const weekNumber = index + 1;
     const isPassed = weekNumber < currentWeekNumber;
     const isCurrentWeek = weekNumber === currentWeekNumber;
 
 
     return (
-      <WeekBox 
+      <WeekBox
         key={weekNumber}
         weekNumber={weekNumber}
         isPassed={isPassed}
