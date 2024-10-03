@@ -1,19 +1,10 @@
-.week-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    justify-content: center;
-    padding: 20px;
-  }
-  
   .week-grid-container {
     max-width: 90%;
     margin: 0 auto;
   }
-  
+
   .week-grid-title {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
   }
-  
