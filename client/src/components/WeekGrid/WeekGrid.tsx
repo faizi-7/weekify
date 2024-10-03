@@ -31,7 +31,7 @@ const WeekGrid: React.FC = () => {
 
   return (
     <div className="week-grid-container">
-      <h2 className="week-grid-title">Weeks of {new Date().getFullYear()}</h2>
+      {/* <h2 className="week-grid-title">Weeks of {new Date().getFullYear()}</h2> */}
       <div className="week-grid">
         {weeks}
       </div>

@@ -1,14 +1,26 @@
 .main-screen-container {
-    padding: 20px;
-    background-color: #f7f7f7;
-  }
-  
-  .display-4 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-  
-  .btn-lg {
-    font-size: 18px;
-  }
-  
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.weeks-wrapper {
+  background-color: var(--ultra-light);
+  border: 1px solid
+}
+
+.display-4 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.btn-lg {
+  font-size: 18px;
+}
+
+.main-screen-wrapper {
+  margin: 200px auto;
+  border:  2px solid black;
+}
