@@ -9,7 +9,6 @@ const getCurrentWeekNumber = () => {
 };
 
 const WeekGrid: React.FC = () => {
-  console.log(typeof getCurrentWeekNumber())
   const totalWeeks = 52; // Or 51 depending on the year
   const currentWeekNumber = getCurrentWeekNumber();
 
