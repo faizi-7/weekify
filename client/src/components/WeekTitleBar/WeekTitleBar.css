@@ -39,3 +39,7 @@
     display: inline-flex;
     gap: 16px;
 }
+
+.arrow {
+    color: var(--sub-heading-color);
+}
