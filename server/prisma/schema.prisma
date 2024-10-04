@@ -12,3 +12,57 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+model User {
+  id          String    @id @default(uuid())
+  email       String    @unique  
+  profileUrl  String?      
+  fullname    String           
+  dob         DateTime 
+  startDate   DateTime @default(now()) 
+  endDate     DateTime 
+  weeks       Week[]
+  todos       Todo[]
+}
+
+model Week {
+  id      String    @id @default(uuid()) 
+  reaction    Reaction  @default(NEUTRAL)             
+  story       String?                       
+  note        String?
+  isActive    Boolean @default(false)    
+  todos       Todo[]      
+  startDate   DateTime                
+  endDate     DateTime
+  
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String                      
+  event     Event?
+}
+
+model Event {
+  id          String   @id @default(uuid()) 
+  title       String
+  description String?
+  date        DateTime
+  week        Week     @relation(fields: [weekId], references: [id])
+  weekId      String   @unique
+}
+model Todo {
+  id          String    @id @default(uuid())
+  title       String
+  isCompleted Boolean  @default(false)
+
+  weekId      String
+  week        Week     @relation(fields: [weekId], references: [id])
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+}
+enum Reaction {
+  THRILLED
+  HAPPY
+  NEUTRAL
+  UNHAPPY
+  MISERABLE
+}
