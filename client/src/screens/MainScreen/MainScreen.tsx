@@ -5,6 +5,7 @@ import React from 'react';
 import WeekGrid from '../../components/WeekGrid/WeekGrid';
 // import Footer from '../../components/Footer/Footer';
 import './MainScreen.css'
+import DarkModeButton from '../../components/DarkModeButton/DarkModeButton';
 
 const MainScreen: React.FC = () => {
   return (
@@ -17,7 +18,8 @@ const MainScreen: React.FC = () => {
             <p className="lead">Track your progress and key milestones week by week.</p>
           </Col>
         </Row> */}
-        <Row className="justify-content-center">
+        <Row className="justify-content-center position-relative">
+        <DarkModeButton />
           <Col xs={12} md={8} lg={6}>
             <WeekGrid />
           </Col>
