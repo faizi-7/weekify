@@ -1,8 +1,8 @@
 .dark-mode-btn {
     border: none;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,10 +10,11 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     position: absolute;
+    right: 100px;
   }
   
   .dark-mode-btn.light {
-    background-color: var(--light-grey);
+    background-color: var(--bs-dark-text-emphasis);
   }
   
   .dark-mode-btn.light:hover {
@@ -21,7 +22,7 @@
   }
   
   .dark-mode-btn.dark {
-    background-color: var(--blue);
+    background-color: var(--bs-gray-700);
   }
   
   .dark-mode-btn.dark:hover {
