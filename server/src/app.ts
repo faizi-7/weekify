@@ -4,7 +4,8 @@ import { globalErrorHandler } from './middleware/globalError';
 import { AppError } from './utils/AppError';
 import passport from 'passport';
 import session from 'express-session';
-import authRoutes from './routes/auth'
+import authRoutes from './routes/authRoute'
+import weekRoutes from './routes/weekRoute'
 import './utils/passport'
 
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', authRoutes)
+app.use('/week', weekRoutes)
 
 // Handle not-found routes
 app.all('*', (req: Request, res: Response, next: NextFunction) => {

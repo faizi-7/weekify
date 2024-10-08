@@ -1,12 +1,13 @@
 import { Router } from "express";
 import passport from "passport";
 import { AppError } from "../utils/AppError";
+import { isAuthenticated } from "../middleware/auth";
+import { authUpdate } from "../controllers/authController";
 const router= Router()
 
 router.get("/login/success", (req, res, next) => {
 	if (req.user) {
 		res.status(200).json({
-			message: "Successfully Loged In",
 			user: req.user,
 		});
 	} else {
@@ -20,7 +21,6 @@ router.get("/login/failed", (req, res, next) => {
 
 router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
-
 router.get(
 	"/google/callback",
 	passport.authenticate("google", {
@@ -28,6 +28,8 @@ router.get(
 		failureRedirect: "/login/failed",
 	})
 );
+
+router.put("/user/update", isAuthenticated, authUpdate)
 
 router.get('/logout', (req, res, next) => {
   req.logout((err) => {
