@@ -1,6 +1,7 @@
 import { Strategy as GoogleStrategy } from "passport-google-oauth20"
 import passport from 'passport'
 import { AppError } from "./AppError";
+import prisma from "./prisma";
 
 const GOOGLE_CLIENT= process.env.CLIENT_ID
 const GOOGLE_SECRET= process.env.CLIENT_SECRET
@@ -17,9 +18,29 @@ passport.use(
 			callbackURL: "http://localhost:3000/auth/google/callback",
 			scope: ["profile", "email"],
 		},
-		function (accessToken, refreshToken, profile, done) {
-			done(null, profile);
+		async function (accessToken, refreshToken, profile, done) {
+			try {
+				if (!profile || !profile.emails || !profile.emails.length) {
+					throw new Error('Profile does not contain required email information');
+				}
+		
+				let user = await prisma.user.upsert({
+					where: {
+						email: profile.emails[0].value, 
+					},
+					update: {},
+					create: {
+						email: profile.emails[0].value,
+						profileUrl: profile.photos?.[0]?.value || null,
+						fullname: profile.displayName || 'Unknown',
+					}
+				});
+				done(null, user);
+			} catch (error) {
+				done(error);
+			}
 		}
+		
 	)
 );
 

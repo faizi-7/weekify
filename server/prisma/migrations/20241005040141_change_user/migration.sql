@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "completed" BOOLEAN NOT NULL DEFAULT false,
+ALTER COLUMN "dob" DROP NOT NULL,
+ALTER COLUMN "endDate" DROP NOT NULL;

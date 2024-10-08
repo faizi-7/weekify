@@ -19,24 +19,26 @@ model User {
   email       String    @unique  
   profileUrl  String?      
   fullname    String           
-  dob         DateTime 
+  dob         DateTime? 
   startDate   DateTime @default(now()) 
-  endDate     DateTime 
+  expectedAge Int? 
+  completed   Boolean @default(false)
   weeks       Week[]
   todos       Todo[]
+  event       Event[]
 }
 
 model Week {
-  id      String    @id @default(uuid()) 
-  reaction    Reaction  @default(NEUTRAL)             
-  story       String?                       
+  id      String    @id @default(uuid())
+  reaction    Reaction  @default(NEUTRAL)
+  story       String?
   note        String?
   isActive    Boolean @default(false)    
-  todos       Todo[]      
+  todos       Todo[]
+  week        Int      
   startDate   DateTime                
   endDate     DateTime
-  
-  user        User     @relation(fields: [userId], references: [id])
+  user        User    @relation(fields: [userId], references: [id])
   userId      String                      
   event     Event?
 }
@@ -48,6 +50,8 @@ model Event {
   date        DateTime
   week        Week     @relation(fields: [weekId], references: [id])
   weekId      String   @unique
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
 }
 model Todo {
   id          String    @id @default(uuid())
