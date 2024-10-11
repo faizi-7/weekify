@@ -8,8 +8,8 @@ generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
+datasource db {     
+  provider = "postgresql" 
   url      = env("DATABASE_URL")
 }
 
@@ -41,6 +41,7 @@ model Week {
   user        User    @relation(fields: [userId], references: [id])
   userId      String                      
   event     Event?
+  @@unique(fields: [userId, week], name: "weekUserId")
 }
 
 model Event {

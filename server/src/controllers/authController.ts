@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { authUpdateSchema } from "../validator/authValidator";
+import { authUpdateSchema } from "../validator/validators";
 import prisma from "../utils/prisma";
 
 export async function authUpdate(req: any, res: Response, next: NextFunction) {
