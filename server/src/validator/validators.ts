@@ -14,3 +14,13 @@ export const weekAddSchema= z.object({
 export const todoSchema= z.object({
   title : z.string().min(1).max(1000)
 })
+export const eventSchema= z.object({
+  title : z.string().min(1).max(1000),
+  description : z.string().max(5000).optional(),
+  date : z.string().date()
+})
+
+export const eventUpdateSchema= z.object({
+  title : z.string().min(1).max(1000).optional(),
+  description : z.string().max(5000).optional(),
+})

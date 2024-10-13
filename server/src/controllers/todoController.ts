@@ -69,21 +69,21 @@ export async function deleteTodo(req: any, res: Response, next: NextFunction) {
   }
 }
 
-export async function markCompleted(req : any, res : Response, next : NextFunction) {
-  try  {
-    const userId= req.user.id 
-    const todoId=  req.params.todoId 
-    const completedTodo= await prisma.todo.update( {
-      where : {
-        id : todoId,
+export async function markCompleted(req: any, res: Response, next: NextFunction) {
+  try {
+    const userId = req.user.id
+    const todoId = req.params.todoId
+    const completedTodo = await prisma.todo.update({
+      where: {
+        id: todoId,
         userId
       },
-      data : {
-        isCompleted : true
+      data: {
+        isCompleted: true
       }
     })
     res.status(201).json({
-      message : `Todo with id : ${completedTodo.id} completed successfully!`
+      message: `Todo with id : ${completedTodo.id} completed successfully!`
     })
   } catch (err: any) {
     if (err instanceof ZodError) {
