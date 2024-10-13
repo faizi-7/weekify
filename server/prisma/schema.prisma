@@ -25,7 +25,6 @@ model User {
   completed   Boolean @default(false)
   weeks       Week[]
   todos       Todo[]
-  event       Event[]
 }
 
 model Week {
@@ -49,10 +48,10 @@ model Event {
   title       String
   description String?
   date        DateTime
-  week        Week     @relation(fields: [weekId], references: [id])
-  weekId      String   @unique
+  week        Int
   userId      String
-  user        User     @relation(fields: [userId], references: [id])
+  weekRel        Week     @relation(fields: [week, userId], references: [week, userId])
+  @@unique(fields: [week, userId])  
 }
 model Todo {
   id          String    @id @default(uuid())
