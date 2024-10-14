@@ -1,0 +1,31 @@
+.dark-mode-btn {
+    border: none;
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    right: 100px;
+  }
+  
+  .dark-mode-btn.light {
+    background-color: var(--bs-dark-text-emphasis);
+  }
+  
+  .dark-mode-btn.light:hover {
+    background-color: var(--blue);
+  }
+  
+  .dark-mode-btn.dark {
+    background-color: var(--bs-gray-700);
+  }
+  
+  .dark-mode-btn.dark:hover {
+    background-color: #007ca1;
+  }
+  

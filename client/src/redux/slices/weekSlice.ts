@@ -17,6 +17,9 @@ const initialState: WeeksState = {
     weekNumber: i + 1,
     status: 'neutral',
   })),
+  map: function (arg0: (week: any, index: any) => import('react/jsx-runtime').JSX.Element): import('react').ReactNode {
+    throw new Error('Function not implemented.');
+  }
 };
 
 const weeksSlice = createSlice({

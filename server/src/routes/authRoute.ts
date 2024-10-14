@@ -36,5 +36,4 @@ router.post('/login', passport.authenticate('local', {
   failureMessage: true,
 }));
 
-
 export default router
