@@ -18,6 +18,8 @@ model User {
   id          String    @id @default(uuid())
   email       String    @unique  
   profileUrl  String?      
+  password    String?
+  authProvider String @default("google")
   fullname    String           
   dob         DateTime? 
   startDate   DateTime @default(now()) 

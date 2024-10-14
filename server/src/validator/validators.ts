@@ -24,3 +24,9 @@ export const eventUpdateSchema= z.object({
   title : z.string().min(1).max(1000).optional(),
   description : z.string().max(5000).optional(),
 })
+
+export const registerUserSchema= z.object({
+  email : z.string().email(),
+  password : z.string().min(6).max(100),
+  fullname : z.string().min(1).max(100)
+})

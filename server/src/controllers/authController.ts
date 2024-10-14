@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express";
-import { authUpdateSchema } from "../validator/validators";
+import { authUpdateSchema, registerUserSchema } from "../validator/validators";
 import prisma from "../utils/prisma";
 import { AppError } from "../utils/AppError";
 import { ZodError } from "zod";
+import bcrypt from "bcrypt"
 
 export async function getUser(req: any, res: Response, next: NextFunction) {
     if (req.user) {
@@ -21,7 +22,7 @@ export async function logoutUser(req: any, res: Response, next: NextFunction) {
       }
       res.redirect(process.env.CLIENT_URL || "");
     });
-  }
+}
 
 export async function authUpdate(req: any, res: Response, next: NextFunction) {
     try {
@@ -71,6 +72,37 @@ export async function authUpdate(req: any, res: Response, next: NextFunction) {
         });
 
         res.status(201).json({ message: `User with id ${updateUser.id} updated successfully!`, data: createdWeeks });
+    } catch (err: any) {
+        if (err instanceof ZodError) {
+            next(new AppError("Validation Error : " + err.issues.map(e => e.message).join(", "), 400))
+        } else {
+            next(new AppError(err.message || "Unexpected Error Occured!", 500))
+        }
+    }
+}
+
+export async function registerUserLocal(req: any, res : Response, next : NextFunction) {
+    try {
+        const bodyData= registerUserSchema.parse(req.body)
+        const userExists= await prisma.user.findUnique( {
+            where : {
+                email : bodyData.email,
+            }
+        })
+        if(userExists) return next(new AppError("User already exists!", 401))
+        let hashedPassword= await bcrypt.hash(bodyData.password, 10)
+        const user= await prisma.user.create( {
+            data : {
+                email : bodyData.email,
+                password : hashedPassword,
+                fullname : bodyData.fullname,
+                authProvider : "local"
+            }
+        })
+        res.status(201).json({
+            message : "User with email & password registered!",
+            data : user
+        })
     } catch (err: any) {
         if (err instanceof ZodError) {
             next(new AppError("Validation Error : " + err.issues.map(e => e.message).join(", "), 400))

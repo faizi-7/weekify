@@ -35,7 +35,7 @@ export async function getAllWeeks(req: any, res: Response, next: NextFunction) {
 
 export async function getSingleWeek(req: any, res: Response, next: NextFunction) {
   try {
-    const weekNum = req.params.weekNum
+    const weekNum = parseInt(req.params.weekNum)
     const userId = req.user.id
     const week = await prisma.week.findUnique({
       where: {
@@ -56,6 +56,11 @@ export async function getSingleWeek(req: any, res: Response, next: NextFunction)
   } catch (err: any) {
     next(new AppError(err.message || "Unexpected Error occured!", 500))
   }
+}
+
+export async function getPresentWeek(req : any, res : Response, next : NextFunction) {
+  const currentWeek= getCurrentWeek(req.user.dob);
+  res.status(200).json({data : currentWeek, message : "Current Week fetched!"})
 }
 
 export async function addWeekContent(req: any, res: Response, next: NextFunction) {
@@ -93,14 +98,14 @@ export async function createEvent(req: any, res: Response, next: NextFunction) {
   try {
     const bodyData = eventSchema.parse(req.body)
     const userId = req.user.id;
-    const weekNum = req.params.weekNum
+    const weekNum = parseInt(req.params.weekNum)
     if(weekNum < getCurrentWeek(req.user.dob)) {
       return next(new AppError("Cannot add event to past weeks!", 404));
     }
     let eventData = {
       title: bodyData.title,
       description: bodyData.description,
-      date: bodyData.date,
+      date: new Date(bodyData.date),
       week: weekNum,
       userId: userId
     }
@@ -127,7 +132,7 @@ export async function updateEvent(req : any, res: Response, next : NextFunction)
   try {
     const bodyData= eventUpdateSchema.parse(req.body)
     const userId = req.user.id;
-    const weekNum = req.params.weekNum
+    const weekNum = parseInt(req.params.weekNum)
     const updatedEvent= await prisma.event.update({
       where : {
         week_userId : {
