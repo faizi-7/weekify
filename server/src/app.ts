@@ -23,11 +23,12 @@ app.use(
       pool: pgPool,
       createTableIfMissing: true
     }),
-    secret: 'your_secret_key',
+    secret: 'ifaiz7',
     resave: false,
     saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24,
+      secure : false
     },
     
   })

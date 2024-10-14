@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt"
 function getMondayFromDOB(dob:string):string {
   let newDOB = new Date(dob);
   let dayOfWeek = newDOB.getDay();
@@ -15,4 +16,9 @@ export function getCurrentWeek(dob:string) : number {
   const diffInMs= currentDate.getTime() - birthDate.getTime()
   let weeksPassed= Math.floor(diffInMs /(1000 * 60 * 60 * 24 * 7)) + 1
   return weeksPassed
+}
+
+export async function comparePassword(givenPassword : string, dbHashedPassword : string) : Promise<boolean> {
+  const result = await bcrypt.compare(givenPassword, dbHashedPassword)
+  return result
 }
