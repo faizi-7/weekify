@@ -76,6 +76,16 @@
   border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent;
 }
 
+.dark-mode .tooltip {
+  background-color: #fff;
+  color: #000;
+  font-weight: 500;
+}
+
+.dark-mode .tooltip::after {
+  border-color: white transparent transparent transparent;
+}
+
 
 @media (max-width: 768px) {
   .week-box {
