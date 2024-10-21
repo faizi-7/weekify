@@ -1,5 +1,6 @@
 import React from 'react';
 import './SingleWeekPopup.css';
+import CloseButton from '../../assets/Icon.png';
 
 interface SingleWeekPopupProps {
   weekNumber: number;
@@ -11,9 +12,10 @@ const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, day, onCl
   return (
     <div className="popup-overlay">
       <div className="popup-content">
-        <button className="close-button" onClick={onClose}>X</button>
-        <h2>Week - {weekNumber} / {day}</h2>
-        
+        <button className="close-button" onClick={onClose}>
+          <img src={CloseButton} alt="" />
+        </button>
+        <h2 className='week-title text-center'>Week - {weekNumber} / {day}</h2>
         <div className="progress-section">
           <div className="progress-bar">
             {/* Sample progress, replace with dynamic progress */}
