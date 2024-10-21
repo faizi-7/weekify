@@ -83,7 +83,6 @@ const WeekBox: React.FC<WeekBoxProps> = ({ weekNumber, isPassed, isCurrentWeek }
       {isPopupOpen && (
         <SingleWeekPopup
           weekNumber={weekNumber}
-          day="Monday" // You can change this dynamically based on the week clicked
           onClose={handleClosePopup}
         />
       )}
