@@ -1,6 +1,6 @@
 import React from 'react';
 import './SingleWeekPopup.css';
-import CloseButton from '../../assets/Icon.png';
+import CloseButtonIcon from '../../assets/Icon.png'; // Renamed for clarity
 
 interface SingleWeekPopupProps {
   weekNumber: number;
@@ -12,39 +12,44 @@ const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, day, onCl
   return (
     <div className="popup-overlay">
       <div className="popup-content">
-        <button className="close-button" onClick={onClose}>
-          <img src={CloseButton} alt="" />
+        <button className="close-button" onClick={onClose} aria-label="Close popup">
+          <img src={CloseButtonIcon} alt="Close" />
         </button>
-        <h2 className='week-title text-center'>Week - {weekNumber} / {day}</h2>
+        <h2 className="week-title text-center">
+          Week - {weekNumber} / {day}
+        </h2>
+
         <div className="progress-section">
-          <div className="progress-bar">
-            {/* Sample progress, replace with dynamic progress */}
-            <div className="progress" style={{ width: '60%' }}></div>
-          </div>
+          {/* 7 progress Bars represents 7 days of a week */}
+          {[...Array(7)].map((_, index) => (
+            <div key={index} className="day-progress"></div>
+          ))}
         </div>
 
         <div className="emoji-section">
-          {/* Add emoji buttons here */}
+          {/* Insert Emoji buttons or icons */}
         </div>
 
-        <div className="story-section">
+        <section className="story-section">
           <h3>Story of the Week</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-        </div>
+        </section>
 
-        <div className="targets-section">
+        <section className="targets-section">
           <h3>Targets</h3>
           <ul>
-            <li><input type="checkbox" /> Lorem Ipsum Target 1</li>
-            <li><input type="checkbox" checked /> Lorem Ipsum Target 2</li>
-            <li><input type="checkbox" /> Lorem Ipsum Target 3</li>
+            {['Lorem Ipsum Target 1', 'Lorem Ipsum Target 2', 'Lorem Ipsum Target 3'].map((target, idx) => (
+              <li key={idx}>
+                <input type="checkbox" defaultChecked={idx === 1} /> {target}
+              </li>
+            ))}
           </ul>
-        </div>
+        </section>
 
-        <div className="notes-section">
+        <section className="notes-section">
           <h3>Add a Note</h3>
           <textarea placeholder="Write your note here..." />
-        </div>
+        </section>
       </div>
     </div>
   );
