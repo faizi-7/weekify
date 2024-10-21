@@ -6,9 +6,9 @@ interface Week {
 }
 
 interface WeeksState {
-  map(arg0: (week: any, index: any) => import("react/jsx-runtime").JSX.Element): import("react").ReactNode;
   year: number;
   weeks: Week[];
+  visibleTooltipWeek: number | null; // To track which week's tooltip is visible
 }
 
 const initialState: WeeksState = {
@@ -17,9 +17,7 @@ const initialState: WeeksState = {
     weekNumber: i + 1,
     status: 'neutral',
   })),
-  map: function (arg0: (week: any, index: any) => import('react/jsx-runtime').JSX.Element): import('react').ReactNode {
-    throw new Error('Function not implemented.');
-  }
+  visibleTooltipWeek: null, // No tooltip is visible initially
 };
 
 const weeksSlice = createSlice({
@@ -47,8 +45,16 @@ const weeksSlice = createSlice({
         : week
       );
     },
+    // Reducer to show the tooltip for a specific week
+    showTooltip(state, action: PayloadAction<number>) {
+      state.visibleTooltipWeek = action.payload;
+    },
+    // Reducer to hide the tooltip
+    hideTooltip(state) {
+      state.visibleTooltipWeek = null;
+    },
   },
 });
 
-export const { highlightWeek, setTargetWeek, resetWeek } = weeksSlice.actions;
+export const { highlightWeek, setTargetWeek, resetWeek, showTooltip, hideTooltip } = weeksSlice.actions;
 export default weeksSlice.reducer;
