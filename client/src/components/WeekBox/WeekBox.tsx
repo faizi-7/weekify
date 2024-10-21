@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './WeekBox.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { showTooltip, hideTooltip } from '../../redux/slices/weekSlice';
 import { RootState } from '../../redux/store/store';
-
+import SingleWeekPopup from '../SingleWeekPopup/SingleWeekPopup'; // Import the popup component
 
 interface WeekBoxProps {
   weekNumber: number;
@@ -16,6 +16,8 @@ const WeekBox: React.FC<WeekBoxProps> = ({ weekNumber, isPassed, isCurrentWeek }
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const visibleTooltipWeek = useSelector((state: RootState) => state.weeks.visibleTooltipWeek);
 
+  const [isPopupOpen, setPopupOpen] = useState(false); // State to manage pop-up visibility
+
   const handleMouseEnter = () => {
     dispatch(showTooltip(weekNumber)); // Show tooltip on hover
   };
@@ -26,6 +28,11 @@ const WeekBox: React.FC<WeekBoxProps> = ({ weekNumber, isPassed, isCurrentWeek }
 
   const handleClick = () => {
     dispatch(showTooltip(weekNumber)); // Show tooltip on click for mobile
+    setPopupOpen(true); // Open the popup on click
+  };
+
+  const handleClosePopup = () => {
+    setPopupOpen(false); // Close the popup when necessary
   };
 
   useEffect(() => {
@@ -52,25 +59,35 @@ const WeekBox: React.FC<WeekBoxProps> = ({ weekNumber, isPassed, isCurrentWeek }
   }, [visibleTooltipWeek, weekNumber]);
 
   return (
-    <div
-      className={`week-box ${isPassed ? 'green' : ''} ${isCurrentWeek ? 'current-week' : ''}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-    >
-      <div className="week-label">
-        {`Week ${weekNumber}`}
-      </div>
+    <>
       <div
-        ref={tooltipRef}
-        className="week-label tooltip"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        data-bs-html="true"
+        className={`week-box ${isPassed ? 'green' : ''} ${isCurrentWeek ? 'current-week' : ''}`}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
       >
-        {`Week ${weekNumber}`}
+        <div className="week-label">
+          {`Week ${weekNumber}`}
+        </div>
+        <div
+          ref={tooltipRef}
+          className="week-label tooltip"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          data-bs-html="true"
+        >
+          {`Week ${weekNumber}`}
+        </div>
       </div>
-    </div>
+
+      {isPopupOpen && (
+        <SingleWeekPopup
+          weekNumber={weekNumber}
+          day="Monday" // You can change this dynamically based on the week clicked
+          onClose={handleClosePopup}
+        />
+      )}
+    </>
   );
 };
 
