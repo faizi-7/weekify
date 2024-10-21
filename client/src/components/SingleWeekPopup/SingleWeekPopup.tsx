@@ -1,14 +1,19 @@
 import React from 'react';
 import './SingleWeekPopup.css';
-import CloseButtonIcon from '../../assets/Icon.png'; // Renamed for clarity
+import CloseButtonIcon from '../../assets/Icon.png';
 
 interface SingleWeekPopupProps {
   weekNumber: number;
-  day: string;
   onClose: () => void;
 }
 
-const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, day, onClose }) => {
+const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+// Get the current day of the week (0-6) and map it to the day name
+const currentDay = daysOfWeek[new Date().getDay()];
+
+const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, onClose }) => {
+
   return (
     <div className="popup-overlay">
       <div className="popup-content">
@@ -16,7 +21,7 @@ const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, day, onCl
           <img src={CloseButtonIcon} alt="Close" />
         </button>
         <h2 className="week-title text-center">
-          Week - {weekNumber} / {day}
+          Week - {weekNumber} / {currentDay}
         </h2>
 
         <div className="progress-section">
@@ -56,3 +61,4 @@ const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, day, onCl
 };
 
 export default SingleWeekPopup;
+
