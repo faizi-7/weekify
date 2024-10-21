@@ -5,6 +5,7 @@ import EnterAgeScreen from './screens/EnterAgeScreen';
 import MainScreen from './screens/MainScreen/MainScreen';
 import store from './redux/store/store';
 import { Provider } from 'react-redux';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const App: React.FC = () => {
   return (
