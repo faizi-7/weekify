@@ -1,6 +1,7 @@
 import React from 'react';
 import './SingleWeekPopup.css';
 import { CloseButtonIcon, happy, smiling, sad, crying } from '../../assets';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 
 
 interface SingleWeekPopupProps {
@@ -32,18 +33,21 @@ const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, onClose }
           ))}
         </div>
 
-        <div className="container">
-          <div className='row'>
-            <div className="col-md-6">
+        <Container>
+          <Row>
+            <Col md={6}>
               <div className="emoji-section">
-                <img src={happy} alt="" /><img src={smiling} alt="" /><img src={sad} alt="" /><img src={crying} alt="" />
+                <img src={happy} alt="happy emoji" />
+                <img src={smiling} alt="smiling emoji" />
+                <img src={sad} alt="sad emoji" />
+                <img src={crying} alt="crying emoji" />
               </div>
-            </div>
-            <div className="col-md-6 align-content-center text-md-end">
-              <button>Add a Key Event</button>
-            </div>
-          </div>
-        </div>
+            </Col>
+            <Col md={6} className="d-flex align-items-center justify-content-md-end">
+              <Button variant="primary">Add a Key Event</Button>
+            </Col>
+          </Row>
+        </Container>
 
 
         <section className="story-section">
