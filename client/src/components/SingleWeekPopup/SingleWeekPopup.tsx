@@ -1,6 +1,7 @@
 import React from 'react';
 import './SingleWeekPopup.css';
-import CloseButtonIcon from '../../assets/Icon.png';
+import { CloseButtonIcon, happy, smiling, sad, crying } from '../../assets';
+
 
 interface SingleWeekPopupProps {
   weekNumber: number;
@@ -31,9 +32,19 @@ const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, onClose }
           ))}
         </div>
 
-        <div className="emoji-section">
-          {/* Insert Emoji buttons or icons */}
+        <div className="container">
+          <div className='row'>
+            <div className="col-md-6">
+              <div className="emoji-section">
+                <img src={happy} alt="" /><img src={smiling} alt="" /><img src={sad} alt="" /><img src={crying} alt="" />
+              </div>
+            </div>
+            <div className="col-md-6 align-content-center text-md-end">
+              <button>Add a Key Event</button>
+            </div>
+          </div>
         </div>
+
 
         <section className="story-section">
           <h3>Story of the Week</h3>
@@ -41,7 +52,6 @@ const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, onClose }
         </section>
 
         <section className="targets-section">
-          <h3>Targets</h3>
           <ul>
             {['Lorem Ipsum Target 1', 'Lorem Ipsum Target 2', 'Lorem Ipsum Target 3'].map((target, idx) => (
               <li key={idx}>
@@ -56,7 +66,7 @@ const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, onClose }
           <textarea placeholder="Write your note here..." />
         </section>
       </div>
-    </div>
+    </div >
   );
 };
 

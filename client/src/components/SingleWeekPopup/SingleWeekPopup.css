@@ -13,9 +13,9 @@
   
   .popup-content {
     background-color: white;
-    padding: 50px 20px 30px 20px;
+    padding: 50px 140px;
     border-radius: 8px;
-    width: 600px;
+    width: 1000px;
     max-width: 90%;
     max-height: 90%;
     overflow-y: auto;
@@ -48,6 +48,23 @@
     border-radius: 0px;
     cursor: pointer;
   }
+
+  .emoji-section {
+    background-color: #eee;
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 40px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+  }
+
+  .emoji-section img {
+    height : 36px;
+    cursor: pointer;
+  }
   
   .story-section, .targets-section, .notes-section {
     margin-bottom: 20px;
@@ -59,4 +76,3 @@
     border-radius: 4px;
     padding: 10px;
   }
-  
