@@ -64,8 +64,13 @@
   .emoji-section img {
     height : 36px;
     cursor: pointer;
+    transition: all .5s;
   }
-  
+
+  .emoji-section img:hover {
+    transform: scale(1.12);
+  }
+
   .story-section, .targets-section, .notes-section {
     margin-bottom: 20px;
   }
