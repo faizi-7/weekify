@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './SingleWeekPopup.css';
 import { CloseButtonIcon, happy, smiling, sad, crying } from '../../assets';
 import { Button, Col, Container, Row } from 'react-bootstrap';
@@ -15,6 +15,24 @@ const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Fri
 const currentDay = daysOfWeek[new Date().getDay()];
 
 const SingleWeekPopup: React.FC<SingleWeekPopupProps> = ({ weekNumber, onClose }) => {
+
+  useEffect(() => {
+    // Function to handle 'Esc' key press
+    const handleEscPress = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose(); // Call the onClose function when Esc is pressed
+      }
+    };
+
+    // Add the event listener for 'keydown'
+    window.addEventListener('keydown', handleEscPress);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('keydown', handleEscPress);
+    };
+  }, [onClose]);
+
 
   return (
     <div className="popup-overlay">
