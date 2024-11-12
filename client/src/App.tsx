@@ -1,24 +1,17 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginScreen from './screens/LoginScreen';
-import EnterAgeScreen from './screens/EnterAgeScreen';
-import MainScreen from './screens/MainScreen/MainScreen';
-import store from './redux/store/store';
-import { Provider } from 'react-redux';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/ui/Layout/Layout";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 
-const App: React.FC = () => {
-  return (
-    <Provider store={store}>
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginScreen />} />
-        <Route path="/enter-age" element={<EnterAgeScreen />} />
-        <Route path="/main" element={<MainScreen />} />
-      </Routes>
-    </Router>
-    </Provider>
-  );
-};
+const router= createBrowserRouter([{
+  path : "/",
+  element : <Layout/> ,
+  children : [
+    { index : true, element : <Home/>},
+    { path : "login", element : <Login/>}
+  ]
+}])
 
-export default App;
+export default function App() {
+  return <RouterProvider router={router}/>
+}
