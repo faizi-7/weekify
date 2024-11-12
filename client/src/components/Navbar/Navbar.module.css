@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--spacing-sm);
+  background-color: var(--bg-light);
+  border-radius: 16px;
+  border: 1.5px solid var(--bg-strong);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding-left: 10px;
+}
+.logo img {
+  width: 28px;
+}
+.logo span {
+  font-size: var(--font-sub-heading);
+  font-weight: 500;
+}
+@media (max-width : 768px) {
+  .container {
+    border-radius: 12px;
+  }
+  .logo {
+    padding-left: 6px;
+  }
+}

@@ -1,0 +1,13 @@
+.container {
+  border-top: 2px solid var(--bg-strong);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  font-size: var(--font-body);
+  padding: 40px 0;
+  color: var(--primary-lighter);
+}
+.container img {
+  width: 40px;
+}

@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--gap-xl);
+  min-height: 100vh;
+  width: 100%;
+  max-width: 1240px;
+  padding: 16px;
+}
+@media (max-width: 568px) {
+  .container {
+    padding: 12px;
+  }
+}
+.children {
+  flex: 1;
+}

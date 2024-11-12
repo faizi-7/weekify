@@ -1,0 +1,43 @@
+.container {
+  flex: 1;
+  background-color: var(--bg-light);
+  border-radius: 16px;
+  border: 1.5px solid var(--bg-strong);
+  min-height: 700px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-left: 40px;
+  padding-top: 40px;
+  position: relative;
+}
+.blurLogo {
+  position: absolute;
+  width: 500px;
+  filter: blur(9px);
+  transform: rotate(-30deg);
+  opacity: 0.6;
+  bottom: -150px;
+  right: -40px;
+}
+.textLogo {
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--primary-light);
+}
+.subTextLogo {
+  font-size: 18px;
+  color: var(--primary-lighter);
+}
+.mainLogo {
+  width: 100px; 
+  transform: rotate(-30deg);
+  position: relative;
+  z-index: 2;
+}
+@media (max-width : 768px) {
+  .container {
+    display: none;
+  }
+}

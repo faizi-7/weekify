@@ -1,17 +1,8 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
-import './Footer.css'
-
-const Footer: React.FC = () => {
-  return (
-    <footer className="footer">
-      <Button variant="primary">Highlight Next Target Week</Button>
-      <div className="view-buttons">
-        <Button variant="info">Yearly View</Button>
-        <Button variant="secondary">Life View</Button>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
+import styles from './Footer.module.css'
+import logo from '../../assets/darkLogo.png'
+export default function Footer() {
+  return <div className={styles.container}>
+    <img src={logo}/>
+    <div>&copy; 2024 Weekify All rights reserved.</div>
+  </div>
+}
