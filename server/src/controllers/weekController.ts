@@ -5,6 +5,31 @@ import { ZodError } from "zod";
 import { AppError } from "../utils/AppError";
 import { getCurrentWeek } from "../utils/utilMethod";
 
+export async function getWeeksByYear(req : any , res : Response, next : NextFunction) {
+  try {
+    const { year }= req.query;
+    const weeks = await prisma.week.findMany({
+      where : {
+        startDate : {
+          gte : new Date(`${year}-01-01`),
+          lt : new Date(`${year+1}-01-01`),
+        }
+      },
+      orderBy : {
+        week : 'asc'
+      }
+    })
+    if(weeks.length == 0) {
+      return next(new AppError("Weeks not found for the year!", 401))
+    } 
+    res.status(201).json({
+      data : weeks,
+      message : "Yearly Weeks fetched!"
+    })
+  } catch (err: any) {
+    next(new AppError(err.message || "Unexpected Error occured!", 500))
+  }
+}
 // Get all the weeks :
 export async function getAllWeeks(req: any, res: Response, next: NextFunction) {
   try {

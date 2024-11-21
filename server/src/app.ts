@@ -37,7 +37,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
-app.use(cors());
+app.use(cors({credentials : false}));
 
 app.get('/', (req, res) => {
   res.send('API Initiated!');

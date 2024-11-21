@@ -39,7 +39,7 @@ passport.use(
 				});
 				done(null, user);
 			} catch (error) {
-				done(error);
+				return done(error);
 			}
 		}
 
@@ -68,24 +68,43 @@ passport.use(new LocalStrategy({
 			return done(null, user);
 
 		} catch (err) {
-			return done(err);
+			 done(err);
 		}
 	}
 ));
 
-passport.serializeUser((user:any, done) => {
-	const userId = user.id;
-	done(null, userId);
+// passport.serializeUser((user:any, done) => {
+// 	const userId = user.id;
+// 	done(null, userId);
+// });
+
+// passport.deserializeUser(async (userId: string, done) => {
+// 	try {
+// 		const user = await prisma.user.findUnique({ where: { id: userId } });
+// 		if (!user) {
+// 			return done(new Error("User not found"), null);
+// 		}
+// 		done(null, user);
+// 	} catch (err) {
+// 		done(err, null);
+// 	}
+// });
+
+passport.serializeUser((user: any, done) => {
+	if (!user.id) {
+			return done(new Error("User ID missing during serialization"), null);
+	}
+	done(null, user.id);
 });
 
 passport.deserializeUser(async (userId: string, done) => {
 	try {
-		const user = await prisma.user.findUnique({ where: { id: userId } });
-		if (!user) {
-			return done(new Error("User not found"), null);
-		}
-		done(null, user);
-	} catch (err) {
-		done(err, null);
+			const user = await prisma.user.findUnique({ where: { id: userId } });
+			if (!user) {
+					return done(new Error("User not found"), null);
+			}
+			done(null, user);
+	} catch (error) {
+			done(error, null);
 	}
-});
+})

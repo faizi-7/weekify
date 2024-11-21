@@ -30,10 +30,19 @@ router.get('/logout', logoutUser);
 
 router.post('/register', registerUserLocal)
 
+// router.post('/login', passport.authenticate('local', {
+//   successRedirect: '/auth/user',
+//   failureRedirect: '/auth/login/failed',
+//   failureMessage: true,
+// }));
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/auth/user',
   failureRedirect: '/auth/login/failed',
-  failureMessage: true,
-}));
+  // failureMessage: true,
+}), (req, res) => {
+  // Redirect explicitly using GET
+  res.redirect('/auth/user');
+});
+
+
 
 export default router
